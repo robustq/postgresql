@@ -111,6 +111,7 @@
   wait_for:
     timeout: 2
   delegate_to: localhost
+  become: false
 
 - name: Repmgr | Register standby
   command: "{{postgresql_bin_directory}}/repmgr -F -h {% for host, vars in hostvars.items() if 'repmgr_primary' in vars and vars['repmgr_primary'] == True %}{{ host }}{% endfor %} -U repmgr -d repmgr -f {{postgresql_conf_directory}}/repmgr.conf standby register"
