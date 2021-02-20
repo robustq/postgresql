@@ -1,4 +1,5 @@
 # file: postgresql/tasks/extensions/contrib.yml
+- include_vars: "../defaults/repmgr.yml"
 
 - name: PostgreSQL | Extensions | Add 2nd Quadrant repo gpg key | apt
   apt_key:
