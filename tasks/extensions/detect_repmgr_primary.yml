@@ -4,6 +4,8 @@
   become: yes
   become_user: postgres
   ignore_errors: True
+  args:
+    executable: /bin/bash
 
 - name: Repmgr | Declare as primary for existing installation
   set_fact:
