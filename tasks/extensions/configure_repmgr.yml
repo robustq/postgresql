@@ -1,3 +1,5 @@
+- include_vars: "../defaults/repmgr.yml"
+
 - name: Repmgr | Update configuration (repmgr.conf)
   template:
     src: "repmgr.conf-{{ repmgr_version[:3] }}.j2"
