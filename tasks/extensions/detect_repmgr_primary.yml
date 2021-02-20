@@ -1,5 +1,3 @@
-- include_vars: "../defaults/repmgr.yml"
-
 - name: Repmgr | Detect primary
   shell: "set -o pipefail ; {{ postgresql_bin_directory }}/repmgr -f {{ repmgr_config_directory }}/repmgr.conf cluster show | grep primary | cut -d '|' -f 2 | sed 's/\ //g'"
   register: repmgr_primary_check
