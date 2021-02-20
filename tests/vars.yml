@@ -1,11 +1,15 @@
 ---
 
-postgresql_version: 12
+postgresql_version: 13
 postgresql_port: 5433
 
 postgresql_databases:
   - name: foobar
     owner: baz
+
+  - name: qux
+    owner: baz
+    state: absent
 
 postgresql_users:
 
@@ -17,6 +21,9 @@ postgresql_users:
   - name: zab
     pass: md51a1dc91c907325c69271ddf0c944bc72
     encrypted: yes
+
+  - name: foo
+    state: absent
 
   - name: zabaz
 
