@@ -13,7 +13,9 @@ postgresql_shared_preload_libraries:
 repmgr_target_group: ""
 repmgr_user: "repmgr"
 repmgr_database: "repmgr"
-repmgr_conninfo: "host={{ansible_hostname}} user={{repmgr_user}} dbname={{repmgr_database}} connect_timeout=2"
+repmgr_passfile: "/var/lib/pgsql/.pgpass"
+# Note: this NEEDS the passfile argument
+repmgr_conninfo: "host={{ansible_hostname}} user={{repmgr_user}} dbname={{repmgr_database}} connect_timeout=2 passfile={{repmgr_passfile}}"
 repmgr_data_directory: "{{postgresql_data_directory}}"
 repmgr_version: "4.2"
 
@@ -34,7 +36,6 @@ repmgr_location: "default"
 repmgr_use_replication_slots: "no"
 repmgr_witness_sync_interval: 15
 repmgr_use_primary_conninfo_password: "false"
-repmgr_passfile: "/var/lib/pgsql/.pgpass"
 repmgr_private_key_path: "/var/lib/pgsql/.ssh/id_rsa"
 repmgr_public_key_path: "/var/lib/pgsql/.ssh/id_rsa.pub"
 repmgr_ssh_key_bits: "2048"
