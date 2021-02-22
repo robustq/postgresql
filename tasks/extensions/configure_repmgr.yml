@@ -132,14 +132,9 @@
     enabled: yes
   when: repmgr_monitoring_history == "true" or repmgr_failover == "automatic"
 
-- name: Repmgr | Ensure crontab is installed
-  package:
-    name: crontabs
-  when: repmgr_monitoring_history == "true" or repmgr_failover == "automatic"
-
 - name: Repmgr | Ensure crond is running
   service:
-    name: "crond"
+    name: "cron"
     state: started
     enabled: yes
 
