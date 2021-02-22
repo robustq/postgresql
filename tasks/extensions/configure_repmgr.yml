@@ -92,7 +92,7 @@
 
 - name: Repmgr | Ensure postgresql slave is stopped before clone
   service:
-    name: "postgresql-{{postgresql_version}}"
+    name: "postgresql"
     state: stopped
   when: not repmgr_primary and not ansible_hostname in repmgr_cluster_show.stdout and not "standby" in repmgr_cluster_show.stdout
 
