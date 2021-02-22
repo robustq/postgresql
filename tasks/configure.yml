@@ -134,6 +134,7 @@
     group: "{{ postgresql_service_group }}"
     mode: 0640
   register: postgresql_configuration_pt1
+  notify: restart postgresql
 
 - name: PostgreSQL | Update configuration - pt. 2 (postgresql.conf)
   template:
@@ -144,6 +145,7 @@
     group: "{{ postgresql_service_group }}"
     mode: 0640
   register: postgresql_configuration_pt2
+  notify: restart postgresql
 
 - name: PostgreSQL | Update configuration - pt. 3 (pgtune)
   become: true
