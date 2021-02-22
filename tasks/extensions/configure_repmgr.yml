@@ -85,7 +85,7 @@
   ignore_errors: True
 
 - name: Repmgr | Register as primary
-  command: "{{postgresql_bin_directory}}/repmgr -f {{repmgr_config_directory}}/repmgr.conf primary register -v"
+  command: "{{postgresql_bin_directory}}/repmgr -F -f {{repmgr_config_directory}}/repmgr.conf primary register -v"
   become: yes
   become_user: "{{ postgresql_service_user }}"
   when: repmgr_primary and not ansible_hostname in repmgr_cluster_show.stdout and not "primary" in repmgr_cluster_show.stdout
@@ -127,7 +127,7 @@
 
 - name: Repmgr | Ensure repmgrd is running
   service:
-    name: "repmgr{{postgresql_version}}"
+    name: "repmgrd"
     state: started
     enabled: yes
   when: repmgr_monitoring_history == "true" or repmgr_failover == "automatic"
