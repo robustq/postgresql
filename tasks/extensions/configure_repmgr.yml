@@ -97,7 +97,7 @@
   when: not repmgr_primary and not ansible_hostname in repmgr_cluster_show.stdout and not "standby" in repmgr_cluster_show.stdout
 
 - name: Repmgr | Clone standby
-  command: "{{postgresql_bin_directory}}/repmgr -F -h {% for host, vars in hostvars.items() if 'repmgr_primary' in vars and vars['repmgr_primary'] == True %}{{ host }}{% endfor %} -p {{ postgresql_port }} -U repmgr -d repmgr -f {{repmgr_config_directory}}/repmgr.conf standby clone"
+  command: "{{postgresql_bin_directory}}/repmgr -F -h {% for host, vars in hostvars.items() if 'repmgr_primary' in vars and vars['repmgr_primary'] == True %}{{ host }}{% endfor %} -p {{ postgresql_port }} -U {{repmgr_user}} -d {{repmgr_database}} -f {{repmgr_config_directory}}/repmgr.conf standby clone"
   become: yes
   become_user: "{{ postgresql_service_user }}"
   when: not repmgr_primary and not ansible_hostname in  repmgr_cluster_show.stdout and not "standby" in repmgr_cluster_show.stdout
@@ -115,13 +115,13 @@
   become: false
 
 - name: Repmgr | Register standby
-  command: "{{postgresql_bin_directory}}/repmgr -F -h {% for host, vars in hostvars.items() if 'repmgr_primary' in vars and vars['repmgr_primary'] == True %}{{ host }}{% endfor %} -U repmgr -d repmgr -f {{repmgr_config_directory}}/repmgr.conf standby register"
+  command: "{{postgresql_bin_directory}}/repmgr -F -h {% for host, vars in hostvars.items() if 'repmgr_primary' in vars and vars['repmgr_primary'] == True %}{{ host }}{% endfor %} -U {{repmgr_user}} -d {{repmgr_database}} -f {{repmgr_config_directory}}/repmgr.conf standby register"
   become: yes
   become_user: "{{ postgresql_service_user }}"
   when: not repmgr_primary and not ansible_hostname in repmgr_cluster_show.stdout and not "standby" in repmgr_cluster_show.stdout
 
 - name: Repmgr | Verify cluster functionality
-  command: "{{postgresql_bin_directory}}/repmgr -F -h {% for host, vars in hostvars.items() if 'repmgr_primary' in vars and vars['repmgr_primary'] == True %}{{ host }}{% endfor %} -U repmgr -d repmgr -f {{repmgr_config_directory}}/repmgr.conf cluster crosscheck"
+  command: "{{postgresql_bin_directory}}/repmgr -F -h {% for host, vars in hostvars.items() if 'repmgr_primary' in vars and vars['repmgr_primary'] == True %}{{ host }}{% endfor %} -U {{repmgr_user}} -d {{repmgr_database}} -f {{repmgr_config_directory}}/repmgr.conf cluster crosscheck"
   become: yes
   become_user: "{{ postgresql_service_user }}"
 
