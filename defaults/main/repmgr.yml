@@ -93,7 +93,8 @@ repmgr_primary_notification_timeout: 60
 repmgr_repmgrd_standby_startup_timeout: 60
 
 # Monitoring
-repmgr_monitoring_history: "no"
+# bad default previously was "no"; values are "true" or "false"
+repmgr_monitoring_history: "false"
 repmgr_monitor_interval_secs: 2
 repmgr_degraded_monitoring_timeout: -1
 repmgr_async_query_timeout: 60
