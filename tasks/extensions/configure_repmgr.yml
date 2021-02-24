@@ -125,11 +125,11 @@
   become: yes
   become_user: "{{ postgresql_service_user }}"
 
-- name: Repmgr | Ensure repmgrd is running
-  service:
+- name: restart repmgrd
+  ansible.builtin.systemd:
     name: "repmgrd"
-    state: started
-    enabled: yes
+    state: restarted
+    daemon_reload: yes
   when: repmgr_monitoring_history == "true" or repmgr_failover == "automatic"
 
 - name: Repmgr | Ensure crond is running
