@@ -5,7 +5,7 @@
     owner: "{{ postgresql_service_user }}"
     group: "{{ postgresql_service_group }}"
     mode: 0640
-  notify: restart repmgr
+  notify: restart repmgrd
 
 - name: Repmgr | Ensure systemd drop-in directory exists
   file:

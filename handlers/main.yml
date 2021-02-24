@@ -8,8 +8,8 @@
       state: restarted
       enabled: yes
 
-  - name: restart repmgr
-    service:
-      name: "repmgr{{postgresql_version}}"
+  - name: restart repmgrd
+    ansible.builtin.systemd:
+      name: "repmgrd"
       state: restarted
-      enabled: yes
+      daemon_reload: yes
