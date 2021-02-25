@@ -10,3 +10,4 @@ test
 *.retry
 venv/
 .idea/
+rename.sh
